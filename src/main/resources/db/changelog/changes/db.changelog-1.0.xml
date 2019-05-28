@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<databaseChangeLog
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog/1.6"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog/1.6
+         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-1.6.xsd">
+
+
+    <changeSet author="dumitru-sandul" id="1">
+        <createSequence minValue="50" sequenceName="menu_id_seq" startValue="50"/>
+
+        <createTable tableName="menus" >
+            <column name="id" type="bigint" autoIncrement="true" >
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="name" type="varchar(100)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="is_archived" type="boolean" defaultValueBoolean="false">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet author="dumitru-sandul" id="2">
+        <createSequence minValue="1" sequenceName="food_id_seq" startValue="1"/>
+
+        <createTable tableName="food">
+            <column name="id" type="bigint" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="name" type="varchar(50)">
+                <constraints unique="true" nullable="false"/>
+            </column>
+            <column name="price" type="double">
+                <constraints unique="true" nullable="false"/>
+            </column>
+        </createTable>
+
+    </changeSet>
+
+    <changeSet author="dumitru-sandul" id="3">
+        <createTable tableName="menu_food">
+            <column name="menu_id" type="bigint">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="food_id" type="bigint">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+        </createTable>
+
+        <addForeignKeyConstraint constraintName="fk_menu_food2menus"
+                                 baseTableName="menu_food"
+                                 baseColumnNames="menu_id"
+                                 referencedTableName="menus"
+                                 referencedColumnNames="id"/>
+
+        <addForeignKeyConstraint constraintName="fk_menu_food2food"
+                                 baseTableName="menu_food"
+                                 baseColumnNames="food_id"
+                                 referencedTableName="food"
+                                 referencedColumnNames="id"/>
+
+    </changeSet>
+
+    <changeSet author="dumitru-sandul" id="4">
+
+        <insert tableName="food">
+            <column name="name" value="Burito"/>
+            <column name="price" value="50.00"/>
+        </insert>
+        <insert tableName="food">
+            <column name="name" value="Chimichanga"/>
+            <column name="price" value="70.00"/>
+        </insert>
+        <insert tableName="food">
+            <column name="name" value="Tartilia"/>
+            <column name="price" value="60.00"/>
+        </insert>
+        <insert tableName="food">
+            <column name="name" value="Nacios"/>
+            <column name="price" value="30.00"/>
+        </insert>
+        <insert tableName="food">
+            <column name="name" value="Holopenio"/>
+            <column name="price" value="20.00"/>
+        </insert>
+
+
+    </changeSet>
+
+
+
+</databaseChangeLog>
