@@ -9,15 +9,13 @@ import org.mapstruct.Mapper;
 @Mapper(componentModel = "spring")
 public interface FoodMapper {
 
-    Food newFoodToFood(NewFoodDto newFoodDto);
+    Food newFoodDtoToFood(NewFoodDto newFoodDto);
 
-    NewFoodDto foodToNewFood(Food food);
+    NewFoodDto foodToNewFoodDto(Food food);
 
-    Food updateFoodToFood(UpdateFoodDto updateFoodDto);
+    Food updateFoodDtoToFood(UpdateFoodDto updateFoodDto);
 
-    UpdateFoodDto foodToUpdateFood(Food food);
+    UpdateFoodDto foodToUpdateFoodDto(Food food);
 
-    Food viewFoodToFood(ViewFoodDto viewFoodDto);
-
-    ViewFoodDto foodToViewFood(Food food);
+    ViewFoodDto foodToViewFoodDto(Food food);
 }

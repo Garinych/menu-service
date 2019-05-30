@@ -30,25 +30,25 @@ public class FoodController {
     @ResponseStatus(HttpStatus.CREATED)
     public NewFoodDto saveFood(@Valid @RequestBody NewFoodDto newFoodDto) throws FoodAlreadyExistException {
 
-        Food food = foodMapper.newFoodToFood(newFoodDto);
+        Food food = foodMapper.newFoodDtoToFood(newFoodDto);
         foodService.saveFood(food);
 
-        return foodMapper.foodToNewFood(food);
+        return foodMapper.foodToNewFoodDto(food);
     }
 
     @PutMapping("/{id}")
     public UpdateFoodDto updateFood(@PathVariable Long id, @Valid @RequestBody UpdateFoodDto updateFoodDto) throws FoodNotFoundException, FoodAlreadyExistException {
 
-        Food updatedFood = foodMapper.updateFoodToFood(updateFoodDto);
+        Food updatedFood = foodMapper.updateFoodDtoToFood(updateFoodDto);
 
         foodService.updateFood(id, updatedFood);
 
-        return foodMapper.foodToUpdateFood(updatedFood);
+        return foodMapper.foodToUpdateFoodDto(updatedFood);
     }
 
 
     @GetMapping
     public Page<ViewFoodDto> findAllFood(Pageable pageable) {
-        return foodRepository.findAll(pageable).map(food -> foodMapper.foodToViewFood(food));
+        return foodRepository.findAll(pageable).map(food -> foodMapper.foodToViewFoodDto(food));
     }
 }

@@ -17,7 +17,5 @@ public interface MenuMapper {
 
     UpdateMenuDto menuToUpdateMenu(Menu menu);
 
-    Menu viewMenuToMenu(ViewMenuDto viewMenuDto);
-
     ViewMenuDto menuToViewMenu(Menu menu);
 }
