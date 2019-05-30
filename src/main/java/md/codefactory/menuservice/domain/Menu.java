@@ -6,6 +6,7 @@ import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Set;
 
+
 @Data
 @Entity
 @Table(name = "menus")
@@ -14,13 +15,13 @@ public class Menu {
     @Id
     @Column(name = "id")
     @SequenceGenerator(name = "menu_id_seq", allocationSize = 1)
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "menu_id_seq")
+    @GeneratedValue(strategy = GenerationType.IDENTITY, generator = "menu_id_seq")
     private Long id;
 
     @Column(name = "name")
     private String name;
 
-    @Column(name = "is_archived")
+    @Column(name = "is_archived", columnDefinition = "false")
     private Boolean isArchived;
 
     @ManyToMany
