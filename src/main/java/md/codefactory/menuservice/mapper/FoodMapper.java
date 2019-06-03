@@ -17,5 +17,7 @@ public interface FoodMapper {
 
     UpdateFoodDto foodToUpdateFoodDto(Food food);
 
+    Food viewFoodDtoTofood(ViewFoodDto viewFoodDto);
+
     ViewFoodDto foodToViewFoodDto(Food food);
 }

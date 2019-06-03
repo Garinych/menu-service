@@ -1,13 +1,18 @@
 package md.codefactory.menuservice.domain;
 
 import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Set;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
-
+@NoArgsConstructor
 @Data
+@EqualsAndHashCode(exclude = "food")
 @Entity
 @Table(name = "menus")
 public class Menu {
@@ -28,5 +33,12 @@ public class Menu {
     @JoinTable(name = "menu_food",
             joinColumns = @JoinColumn(name = "menu_id"),
             inverseJoinColumns = @JoinColumn(name = "food_id"))
-    private Set<Food> food = new HashSet<>();
+    private Set<Food> food;
+
+    public Menu(String name,Boolean isArchived, Food... food) {
+        this.name = name;
+        this.isArchived = isArchived;
+        this.food = Stream.of(food).collect(Collectors.toSet());
+        this.food.forEach(x -> x.getMenus().add(this));
+    }
 }

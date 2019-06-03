@@ -9,6 +9,8 @@ import javax.validation.constraints.NotBlank;
 @Setter
 public class ViewFoodDto {
 
+    private Long id;
+
     private String name;
 
     private String price;

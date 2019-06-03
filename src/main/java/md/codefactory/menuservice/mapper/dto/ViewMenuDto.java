@@ -2,7 +2,6 @@ package md.codefactory.menuservice.mapper.dto;
 
 import lombok.Getter;
 import lombok.Setter;
-import md.codefactory.menuservice.domain.Food;
 
 import java.util.Set;
 
@@ -14,5 +13,5 @@ public class ViewMenuDto {
 
     private Boolean isArchived;
 
-    private Set<Food> food;
- }
+    private Set<ViewFoodDto> food;
+}

@@ -19,8 +19,8 @@ public class MenuService {
     public Menu saveMenu(Menu menu) throws MenuAlreadyExistException {
 
         Optional<Menu> existMenu = menuRepository.findByName(menu.getName());
-        if (existMenu.isPresent()){
-            throw  new MenuAlreadyExistException("Menu with name = " + menu.getName() + " already exist!");
+        if (existMenu.isPresent()) {
+            throw new MenuAlreadyExistException("Menu with name = " + menu.getName() + " already exist!");
         }
 
         return menuRepository.save(menu);
@@ -34,8 +34,8 @@ public class MenuService {
         BeanUtils.copyProperties(menu, updatedMenu, "id");
 
         Optional<Menu> existMenu = menuRepository.findByName(menu.getName());
-        if (existMenu.isPresent() && !existMenu.get().getId().equals(id)){
-            throw  new MenuAlreadyExistException("Menu with name = " + menu.getName() + " already exist!");
+        if (existMenu.isPresent() && !existMenu.get().getId().equals(id)) {
+            throw new MenuAlreadyExistException("Menu with name = " + menu.getName() + " already exist!");
         }
 
         return menuRepository.save(updatedMenu);

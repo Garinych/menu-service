@@ -3,6 +3,8 @@ package md.codefactory.menuservice.domain;
 import lombok.Data;
 
 import javax.persistence.*;
+import java.util.HashSet;
+import java.util.Set;
 
 
 @Data
@@ -21,5 +23,8 @@ public class Food {
 
     @Column(name = "price")
     private Double price;
+
+    @ManyToMany(mappedBy = "food")
+    private Set<Menu> menus = new HashSet<>();
 
 }

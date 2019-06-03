@@ -2,7 +2,6 @@ package md.codefactory.menuservice.mapper.dto;
 
 import lombok.Getter;
 import lombok.Setter;
-import md.codefactory.menuservice.domain.Food;
 
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
@@ -19,5 +18,5 @@ public class NewMenuDto {
     private Boolean isArchived;
 
     @NotNull
-    private Set<Food> food;
+    private Set<ViewFoodDto> food;
 }

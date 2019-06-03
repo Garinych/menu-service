@@ -90,4 +90,26 @@ public class FoodControllerTest {
                 .andExpect(status().isOk());
 
     }
+
+    @Test
+    public void should_find_food_by_menu_id() throws Exception {
+
+        this.mockMvc.perform(get("/api/food/1")
+                .accept(MediaType.APPLICATION_JSON)
+                .contentType(MediaType.APPLICATION_JSON))
+                .andExpect(status().isOk());
+
+    }
+
+    @Test
+    public void should_find_food_by_menu_id_not_exist() throws Exception {
+
+        this.mockMvc.perform(get("/api/food/7")
+                .accept(MediaType.APPLICATION_JSON)
+                .contentType(MediaType.APPLICATION_JSON))
+                .andExpect(status().isNotFound())
+                .andExpect(jsonPath("errorMessage", is("Menu with id = 7 not found !")));
+
+    }
+
 }
